@@ -26,9 +26,21 @@ body, html {
     padding: 0 30px;
 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8em;
     background-color: var(--control-background);
     color: white;
+}
+
+#right-pane #heading details summary h3 {
+    display: inline;
+}
+
+#right-pane #heading details {
+    margin-bottom: 10px;
+}
+
+#right-pane #heading details div {
+    margin-top: 10px;
+    padding-left: 10px;
 }
 
 #left-pane {

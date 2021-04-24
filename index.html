@@ -18,7 +18,59 @@
         </div>
         <div id="right-pane">
             <div id="heading">
-                <h2>Output Code</h2>
+                <h2>Sord Output</h2>
+
+                <details open>
+                    <summary><h3>Output Format</h3></summary>
+                    <div>
+                        <input type="radio" name="output-format" id="output-format-rbi" value="rbi" checked>
+                        <label for="output-format-rbi">
+                            <b>RBI</b> - Used by the Sorbet type checker.
+                        </label>
+                        <br>
+                        <input type="radio" name="output-format" id="output-format-rbs" value="rbs">
+                        <label for="output-format-rbs">
+                            <b>RBS</b> - Used by Ruby 3, and the Steep type checker.
+                        </label>
+                        <br>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary><h3>Extra Options</h3></summary>
+                    <div>
+                        <input type="checkbox" name="include-comments" id="include-comments">
+                        <label for="include-comments">
+                            Include Markdown-format comments to show in editors.
+                        </label>
+                        <br>
+
+                        <p>
+                            If a YARD type cannot be parsed,
+                            <input type="radio" name="replace-errors-with-untyped" id="replace-errors-with-untyped-true" value="true" checked>
+                            <label for="replace-errors-with-untyped-true">
+                                replace it with <code>untyped</code> or
+                            </label>
+                            <input type="radio" name="replace-errors-with-untyped" id="replace-errors-with-untyped-false" value="false">
+                            <label for="replace-errors-with-untyped-false">
+                                generate a placeholder constant.
+                            </label>
+                        </p>
+
+                        <p>
+                            If a namespace used in a type cannot be resolved,
+                            <input type="radio" name="replace-unresolved-with-untyped" id="replace-unresolved-with-untyped-true" value="true" checked>
+                            <label for="replace-unresolved-with-untyped-true">
+                                replace it with <code>untyped</code> or
+                            </label>
+                            <input type="radio" name="replace-unresolved-with-untyped" id="replace-unresolved-with-untyped-false" value="false">
+                            <label for="replace-unresolved-with-untyped-false">
+                                use the namespace anyway.
+                            </label>
+                        </p>
+                    </div>
+                </details>
+
                 <button id="convert-button">Convert</button>
             </div>
             <div id="output-code"></div>

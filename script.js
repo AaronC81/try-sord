@@ -17,6 +17,20 @@ require(["vs/editor/editor.main"], setupEditors);
 
 const ENDPOINT = "https://sord-server.herokuapp.com";
 
+function getOptions() {
+    const mode = document.querySelector("input[name='output-format']:checked").value;
+    const comments = document.getElementById("include-comments").checked;
+    const replaceErrorsWithUntyped = document.querySelector("input[name='replace-errors-with-untyped']:checked").value == "true";
+    const replaceUnresolvedWithUntyped = document.querySelector("input[name='replace-unresolved-with-untyped']:checked").value == "true";
+
+    return {
+        mode,
+        comments,
+        replace_errors_with_untyped: replaceErrorsWithUntyped,
+        replace_unresolved_with_untyped: replaceUnresolvedWithUntyped,
+    }
+}
+
 async function sendConversionRequest(body) {
     return fetch(`${ENDPOINT}/run`, {
         method: "POST",
@@ -43,13 +57,7 @@ function setupEditors() {
         const inputCode = inputEditor.getValue();
         const response = await sendConversionRequest({
             code: inputCode,
-            options: {
-                mode: "rbs",
-                break_params: 4,
-                replace_errors_with_untyped: true,
-                replaced_unresolved_with_untyped: true,
-                comments: false,
-            },
+            options: getOptions(),
         });
 
         if (response.status === 200) {
