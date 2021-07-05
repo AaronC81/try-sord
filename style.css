@@ -85,18 +85,26 @@ body, html {
 #convert-button {
     background-color: var(--button-background);
     color: white;
-    border: none;
-    border-radius: 20px;
 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1rem;
     
     width: 100px;
-    height: 40px;
-    margin: 20px 0;
     cursor: pointer;
 
     transition: all 0.1s linear;
+}
+
+#output-view {
+    background-color: white;
+    float: right;
+}
+
+#convert-button, #output-view {
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    margin: 20px 0;
 }
 
 #convert-button:hover {

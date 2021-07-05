@@ -74,6 +74,14 @@ function setupEditors() {
         automaticLayout: true,
         readOnly: true,
     });
+
+    let currentView = "code";
+    let lastResponse = undefined;
+
+    function updateOutputEditor() {
+        if (!lastResponse) return;
+        outputEditor.setValue(lastResponse[currentView]);
+    }
     
     const convert = async () => {
         const inputCode = inputEditor.getValue();
@@ -94,7 +102,9 @@ function setupEditors() {
 
         if (response.status === 200) {
             const responseBody = await response.json();
-            outputEditor.setValue(responseBody.code);
+            console.log(responseBody);
+            lastResponse = responseBody;
+            updateOutputEditor();
         } else {
             outputEditor.setValue("Error");
         }
@@ -102,4 +112,9 @@ function setupEditors() {
 
     document.getElementById("convert-button").onclick = convert;
     convert();
+
+    document.getElementById("output-view").onchange = () => {
+        currentView = document.getElementById("output-view").value;
+        updateOutputEditor();
+    }
 }
