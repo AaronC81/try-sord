@@ -12,6 +12,13 @@ body, html {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 20px);
+
+    /*
+    Web developers hate him! Discover this one weird trick for fixing random
+    scrollbars... 
+    */
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #header {
