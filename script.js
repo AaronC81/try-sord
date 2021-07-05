@@ -30,6 +30,33 @@ async function sendConversionRequest(body) {
     });
 }
 
+const exampleCode =
+`module Example
+  class Person
+    # @param name [String] The name of the Person to create.
+    # @param age [Integer] The age of the Person to create.
+    # @return [Example::Person]
+    def initialize(name, age)
+      @name = name
+      @age = age
+    end
+
+    # @return [String]
+    attr_accessor :name
+
+    # @return [Integer]
+    attr_accessor :age
+
+    # @param possible_names [Array<String>] An array of potential names to choose from.
+    # @param possible_ages [Array<Integer>] An array of potential ages to choose from.
+    # @return [Example::Person]
+    def self.construct_randomly(possible_names, possible_ages)
+      Person.new(possible_names.sample, possible_ages.sample)
+    end
+  end
+end
+`;
+
 function setupEditors() {
     const inputEditor = monaco.editor.create(document.getElementById("input-code"), {
         theme: "vs-dark",
@@ -37,6 +64,9 @@ function setupEditors() {
         fixedOverflowWidgets: true,
         automaticLayout: true,
     });
+    inputEditor.getModel().updateOptions({ tabSize: 2 });
+    inputEditor.setValue(exampleCode);
+    
     const outputEditor = monaco.editor.create(document.getElementById("output-code"), {
         theme: "vs-dark",
         language: "ruby",
@@ -45,7 +75,7 @@ function setupEditors() {
         readOnly: true,
     });
     
-    document.getElementById("convert-button").onclick = async () => {
+    const convert = async () => {
         const inputCode = inputEditor.getValue();
 
         // Start the loading spinner
@@ -69,4 +99,7 @@ function setupEditors() {
             outputEditor.setValue("Error");
         }
     };
+
+    document.getElementById("convert-button").onclick = convert;
+    convert();
 }
