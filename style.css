@@ -91,7 +91,8 @@ body, html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1rem;
     
-    padding: 8px 30px;
+    width: 100px;
+    height: 40px;
     margin: 20px 0;
     cursor: pointer;
 

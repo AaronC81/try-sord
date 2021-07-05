@@ -44,13 +44,23 @@ function setupEditors() {
         automaticLayout: true,
         readOnly: true,
     });
-
+    
     document.getElementById("convert-button").onclick = async () => {
         const inputCode = inputEditor.getValue();
+
+        // Start the loading spinner
+        document.querySelector("#convert-button > span").style.display = "none";
+        document.querySelector("#convert-button > svg").style.display = "inline";
+        document.getElementById("convert-button").enabled = false;
+
         const response = await sendConversionRequest({
             code: inputCode,
             options: getOptions(),
         });
+
+        // Stop the loading spinner
+        document.querySelector("#convert-button > span").style.display = "inline";
+        document.querySelector("#convert-button > svg").style.display = "none";     
 
         if (response.status === 200) {
             const responseBody = await response.json();
