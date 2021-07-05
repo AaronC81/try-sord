@@ -3,20 +3,43 @@ body, html {
     margin: 0;
 
     --control-background: #2e313a;
+    --header-background: #455e6e;
     --button-background: #485069;
     --button-background-hover: #5b6585;
 
     background-color: var(--control-background);
+
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20px);
+}
+
+#header {
+    box-shadow: 0 0 10px black;
+    z-index: 99;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: var(--header-background);
+
+    padding: 0 20px;
+}
+
+#header a, #header a:link, #header a:visited, #header a:hover, #header a:active {
+    color: white;
 }
 
 #pane-container {
-    height: 100vh;
-    width: calc(100vw);
+    flex: 1 1 0;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
 }
 
 #pane-container > * {
     width: calc(50% - 2px);
-    height: 100vh;
+    flex: 1 1 0;
 
     display: flex;
     flex-direction: column;
