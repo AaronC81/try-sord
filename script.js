@@ -15,7 +15,7 @@ require(["vs/editor/editor.main"], setupEditors);
 
 // -----------------------------------------------------------------------------
 
-const ENDPOINT = "https://sord-server.herokuapp.com";
+const ENDPOINT = "https://sord-server.fly.dev";
 
 function getOptions() {
     const mode = document.querySelector("input[name='output-format']:checked").value;
